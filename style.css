@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    overflow-x: hidden; 
+}
+
+html {
+    scroll-behavior: smooth; /* Робить прокрутку м'якою */
+}
+
+::-webkit-scrollbar {
+    display: none; /* Приховуємо стандартний скроллбар */
+}
+
+
+/* Стиль для відео */
+.video-stroke{
+    border: 3px solid rgba(255, 77, 109, 0.8);         /* Товстіша (3px) та менш прозора (0.8) */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), /* Стандартна темна тінь для об'єму */
+                0 0 15px 3px rgba(255, 77, 109, 0.6); /* Рожеве світіння навколо картки */
+}
+#final-video:fullscreen {
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+
+/* Стиль картки */
+.content {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+.glass-card {
+    color: #f0f0f0;
+    background: rgba(216, 208, 208, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 600px;
+    border: 3px solid rgba(255, 77, 109, 0.8);         /* Товстіша (3px) та менш прозора (0.8) */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), /* Стандартна темна тінь для об'єму */
+                0 0 15px 3px rgba(255, 77, 109, 0.6); /* Рожеве світіння навколо картки */
+}
+.fade-in {
+    color: #f0f0f0;
+    opacity: 0;
+    animation: fadeInUp 1.5s forwards;
+}
+.delay-1 { animation-delay: 1s; }
+.delay-2 { animation-delay: 2.5s; }
+.delay-3 { animation-delay: 4s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Стиль для кнопки */
+button {
+    margin-top: 20px;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    background-color: #ff4d6d;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+}
+button:hover {
+    background-color: #ff758f;
+    transform: scale(1.1);
+}
+
+
+/* Стиль для сердечок, що падають */
+.heart {
+    position: fixed;
+    top: -10%;
+    font-size: 20px;
+    user-select: none;
+    pointer-events: none;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+
+/* Стиль для фото, що плавають навколо картки */
+.photo-float-container {
+    inset: 0;
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    
+}
+/* Позиціонування 8 фотографій */
+.p1 { top: 5%; left: 8%; animation-delay: 0s; }
+.p2 { top: 12%; left: 75%; animation-delay: -3s; }
+.p3 { top: 75%; left: 5%; animation-delay: -6s; }
+.p4 { top: 80%; left: 80%; animation-delay: -9s; }
+.p5 { top: 40%; left: 2%; animation-delay: -12s; }
+.p6 { top: 45%; left: 85%; animation-delay: -2s; }
+.p7 { top: 2%; left: 45%; animation-delay: -5s; }
+.p8 { top: 82%; left: 42%; animation-delay: -8s; }
+.floating-photo {
+    position: absolute;
+    width: 160px; 
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(255, 77, 109, 0.3);
+    opacity: 0.6;
+    animation: floatAnimation 14s infinite ease-in-out;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), /* Стандартна темна тінь для об'єму */
+                0 0 15px 3px rgba(255, 77, 109, 0.6); /* Рожеве світіння навколо картки */
+}
+@keyframes floatAnimation {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(20px, -30px) rotate(3deg); }
+    66% { transform: translate(-15px, 20px) rotate(-3deg); }
+}
+@keyframes floatAnimation {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(25px, -35px) rotate(4deg); }
+    66% { transform: translate(-15px, 25px) rotate(-4deg); }
+}
