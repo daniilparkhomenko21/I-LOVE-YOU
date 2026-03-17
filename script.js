@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Чекаємо 9 секунди (поки закінчиться основний водоспад)
             setTimeout(() => {
-                btn.innerText = "Натисни ще раз на кнопку✨";
+                btn.innerText = "Натисни ще раз ✨";
                 btn.style.pointerEvents = "auto"; // Знову вмикаємо кнопку
                 btn.style.backgroundColor = "#ff758f"; // Злегка змінюємо колір для заклику
             }, 9000);
