@@ -5,36 +5,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let clickCount = 0; // Лічильник натискань
 
-
-// Обробник кліку по кнопці
+    // Обробник кліку по кнопці
     btn.addEventListener('click', function() {
         clickCount++;
 
         if (clickCount === 1) {
             // ЕТАП 1: Запуск сердечок
             createHearts();
-            this.innerText = "Ого, скільки любові! 😍"; // Тимчасовий текст
-            this.style.pointerEvents = "none"; // Вимикаємо кнопку, поки летять сердечка
+            this.innerText = "Ого, скільки любові! 😍"; 
+            this.style.pointerEvents = "none"; 
 
-            // Чекаємо 9 секунди (поки закінчиться основний водоспад)
+            // Чекаємо 9 секунд
             setTimeout(() => {
                 btn.innerText = "Натисни ще раз ✨";
-                btn.style.pointerEvents = "auto"; // Знову вмикаємо кнопку
-                btn.style.backgroundColor = "#ff758f"; // Злегка змінюємо колір для заклику
+                btn.style.pointerEvents = "auto"; 
+                btn.style.backgroundColor = "#ff758f"; 
             }, 9000);
 
         } else if (clickCount === 2) {
-            // ЕТАП 2: Скрол до відео
+            // ЕТАП 2: Скрол до відео та Fullscreen для iPad
             this.innerText = "Дивись... ❤️";
-            this.style.pointerEvents = "none"; // Вимикаємо кнопку остаточно
+            this.style.pointerEvents = "none"; 
+
+            // Попереднє завантаження для стабільності на iOS
+            finalVideo.load();
 
             setTimeout(() => {
                 movieSection.scrollIntoView({ behavior: 'smooth' });
 
-                // Автозапуск відео після того, як скрол завершиться
+                // Автозапуск відео
                 setTimeout(() => {
-                    finalVideo.play().catch(error => {
-                        console.log("Автоплей потребує кліку");
+                    finalVideo.play().then(() => {
+                        // Магія для iPad: примусове відкриття на весь екран
+                        if (finalVideo.webkitEnterFullscreen) {
+                            finalVideo.webkitEnterFullscreen();
+                        } else if (finalVideo.requestFullscreen) {
+                            finalVideo.requestFullscreen();
+                        }
+                    }).catch(error => {
+                        console.log("iOS блокує автоплей без прямої взаємодії:", error);
+                        // Якщо не спрацювало автоматично, показуємо контролери, щоб людина натиснула сама
+                        finalVideo.controls = true;
                     });
                 }, 1000);
             }, 500);
