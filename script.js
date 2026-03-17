@@ -31,7 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     finalVideo.play().then(() => {
                         // ПАНЕЛЬ З'ЯВЛЯЄТЬСЯ ТІЛЬКИ ТУТ
-                        finalVideo.controls = true; 
+                        finalVideo.addEventListener('click', () => {
+                        finalVideo.controls = true; // Панель з'явиться лише при натисканні на саме відео
+                        }, { once: true }); // Спрацює лише один раз при першому торканні
                     }).catch(error => {
                         console.log("Помилка відтворення:", error);
                         // Якщо автоплей заблоковано, все одно показуємо панель, щоб можна було натиснути Play
