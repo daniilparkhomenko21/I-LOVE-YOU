@@ -153,12 +153,6 @@ button:hover {
     66% { transform: translate(-15px, 25px) rotate(-4deg); }
 }
 
-/* Стандартні стилі для ПК (великі екрани) */
-.floating-photo {
-    width: 160px;
-    opacity: 0.6;
-}
-
 /* Стилі спеціально для телефонів (екран менше 768px) */
 @media (max-width: 767px) {
     .floating-photo {
