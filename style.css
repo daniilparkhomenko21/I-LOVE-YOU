@@ -192,11 +192,40 @@ button:hover {
     .p2 { top: 8%; right: 5%; left: auto; }
     .p3 { bottom: 12%; left: 5%; }
     .p4 { bottom: 8%; right: 5%; left: auto; }
-    .p5 { top: 30%; left: -5%; }
-    .p6 { top: 30%; right: -5%; left: auto; }
-    .p7 { top: -2%; left: 40%; }
-    .p8 { bottom: -2%; left: 40%; }
+    .p5 { top: 50%; left: -5%; transform: translateY(-50%);}
+    .p6 { top: 50%; right: -5%; left: auto; transform: translateY(-50%); }
+    .p7 { top: 8%; left: 50%; transform: translateX(-50%); }
+    .p8 { bottom: 8%; left: 50%;transform: translateX(-50%);}
 
+   /* Анімація для мобільних (щоб transform: translate(-50%) не конфліктував) */
+    @keyframes floatAnimation {
+        0%, 100% { transform: translate(0, 0) rotate(0deg); }
+        33% { transform: translate(10px, -15px) rotate(3deg); }
+        66% { transform: translate(-8px, 10px) rotate(-3deg); }
+    }
+    
+    /* Окреме налаштування анімації для центрованих p5, p6, щоб зберегти transform */
+    .p5, .p6 {
+        animation: floatAnimationMobileCenter 14s infinite ease-in-out;
+    }
+    
+    @keyframes floatAnimationMobileCenter {
+        0%, 100% { transform: translateY(-50%) translate(0, 0) rotate(0deg); }
+        33% { transform: translateY(-50%) translate(10px, -15px) rotate(3deg); }
+        66% { transform: translateY(-50%) translate(-8px, 10px) rotate(-3deg); }
+    }
+    
+    /* Оновлена анімація для p7 та p8, щоб не конфліктувати з центрованим X */
+    .p7, .p8 {
+        animation: floatAnimationMobileHorizontal 14s infinite ease-in-out;
+    }
+
+    @keyframes floatAnimationMobileHorizontal {
+        0%, 100% { transform: translateX(-50%) translate(0, 0) rotate(0deg); }
+        33% { transform: translateX(-50%) translate(10px, -15px) rotate(3deg); }
+        66% { transform: translateX(-50%) translate(-8px, 10px) rotate(-3deg); }
+    }
+    
     /* Секція з відео */
     #movie-section div {
         width: 95%; /* Відео майже на всю ширину */
